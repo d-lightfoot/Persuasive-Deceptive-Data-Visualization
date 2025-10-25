@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DSC209R - Project 2 Deceptive Visualization</title>
+    <style>
+      :root {
+        --color-neutral-95: hsl(220 10% 95%);
+        --color-neutral-90: hsl(220 10% 90%);
+        --color-neutral-80: hsl(220 10% 80%);
+        --color-neutral-70: hsl(220 10% 70%);
+        --color-neutral-60: hsl(220 10% 60%);
+        --color-neutral-50: hsl(220 10% 50%);
+        --color-neutral-40: hsl(220 10% 40%);
+        --color-neutral-30: hsl(220 10% 30%);
+        --color-neutral-20: hsl(220 10% 20%);
+        --color-neutral-10: hsl(220 10% 10%);
+      }
+
+      html {
+        font: 100%/1.5 system-ui;
+        counter-reset: figure;
+        background: var(--color-neutral-95);
+        max-width: min(75vw, 80em);
+        margin: 0 auto;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.1;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 1px solid var(--color-neutral-80);
+        padding-bottom: 0.2em;
+      }
+
+      h1 {
+        margin-block: 1em 0.5rem;
+        font-size: clamp(2em, 120% + 2vh + 2vw, 8vmin);
+        font-weight: 800;
+
+        small {
+          display: block;
+          width: fit-content;
+          padding: 0.2em 0.5em;
+          margin-inline: auto;
+          color: white;
+          background: var(--color-neutral-40);
+          font-size: 40%;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+      }
+
+      h2 {
+        font-size: 150%;
+        color: var(--color-neutral-30);
+      }
+
+      h3 {
+        font-size: 130%;
+      }
+
+      ul,
+      ol {
+        padding-inline-start: 2em;
+      }
+
+      li {
+        &::marker {
+          color: var(--color-neutral-40);
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+      }
+
+      header {
+        padding-block: 1em;
+        text-align: center;
+      }
+
+      main {
+        background: white;
+        color: var(--color-neutral-20);
+        border-radius: 1rem;
+        padding: 0.1rem 2rem;
+      }
+
+      figure {
+        margin: 1em 0;
+        padding: 0.5rem;
+        margin-inline: -0.5em;
+        border: 1px solid var(--color-neutral-80);
+        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        text-align: center;
+        background: white;
+      }
+
+      figure img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+
+        > figcaption {
+          font: 500 75% var(--font-sans);
+          background: var(--color-neutral-95);
+          padding: 0.5rem;
+          margin: -0.5rem;
+          margin-top: 0.5rem;
+          counter-increment: figure;
+          text-align: left;
+
+          &::before {
+            content: 'Figure ' counter(figure) ': ';
+            font-weight: bold;
+            color: var(--color-neutral-40);
+          }
+
+          a:not(:hover, :focus, :active) {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: color-mix(
+              in lab,
+              currentColor,
+              transparent 70%
+            );
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <small>Project 2</small>
+        Persuasive or Deceptive Visualization?
+      </h1>
+
+      <p><strong>David Lightfoot</strong> — <em>dlightfo@ucsd.edu</em></p>
+    </header>
+
+    <main>
+      <h2>Proposition: Abortion access has declined significantly across the U.S. from 2014-2020.</h2>
+
+      <section>
+        <h3>FOR the Proposition</h3>
+
+        <figure>
+          <img src="figure1.png" alt="Bar chart showing states with highest out-of-state abortion travel rates" />
+          <figcaption></figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>
+            <strong>Categorical binning</strong> (Score: -1.0, deceptive)<br>
+            Created two categories (Majority Travel v.s. Substantial Travel) with a 50% threshold because "majority" sounds like a tipping point.
+          </li>
+          
+          <li>
+            <strong>Red color scheme</strong> (Score: -1.5, very deceptive)<br>
+            Used red specifically to trigger danger/alarm emotions before people even read the numbers.
+          </li>
+          
+          <li>
+            <strong>Leading with Missouri's 99%</strong> (Score: -1.0, deceptive)<br>
+            Sorting descending puts the most extreme outlier first, which creates an anchor that distorts perception of the whole dataset.
+          </li>
+          
+          <li>
+            <strong>Neutral-sounding title</strong> (Score: 0.5, slightly earnest)<br>
+            "States with Highest Out-of-State Abortion Travel Rates" sounds objective and data-driven instead of alarmist.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>AGAINST the Proposition</h3>
+
+        <figure>
+          <img src="figure2.png" alt="Bar chart showing states with largest increases in abortion rates" />
+          <figcaption></figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>
+            <strong>Percentage change calculation</strong> (Score: -0.5, mildly deceptive)<br>
+            Calculated percentage increase from 2017 to 2020, which is technically legitimate but psychologically inflated.
+          </li>
+          
+          <li>
+            <strong>Selective filtering</strong> (Score: -1.5, very deceptive)<br>
+            Only showed 10 states with largest increases, completely hiding 21 states with decreases.
+          </li>
+          
+          <li>
+            <strong>Green color scheme</strong> (Score: -1.5, very deceptive)<br>
+            Green creates positive emotions—growth, health, and progress. It's the mirror opposite of Figure 1's red.
+          </li>
+           
+          <li>
+            <strong>Leading with Oklahoma's 100%</strong> (Score: -1.0, deceptive)<br>
+            Starting with "Oklahoma's rate doubling" creates a powerful anchor. "Doubling" sounds exponential and dramatic.
+          </li>
+        </ul>
+      </section>
+
+      </section>
+        <h2>Final Reflection</h2>
+
+        <p>The most difficult challenge in creating the visualizations for this project was finding the balance between deception and persuasion—crafting something convincing without being too obvious. My early drafts/iterations used charged language like "crisis" and "forced," which were too transparent and would have been immediately recognized/flagged as biased. Through revision, I learned that the most effective forms of deception work subtly—through color psychology, methodological framing, and strategic omission. What surprised me most was how powerful color can be on its own. Using identical filtering techniques in red versus green created completely opposite emotional responses. The red bars triggered alarm while the green bars suggested optimism, despite showing the exact same selective filtering. Anchoring with extreme outliers (Missouri 99%, Oklahoma 100%) also proved effective, as those extremes became memorable visual reference points.</p>
+
+        <p>I used to think ethical visualization simply meant "don't lie with numbers". Now I realize that while both of my visualizations were technically accurate, they were still misleading through selective emphasis and emotional framing. Every number was correct, every calculation valid, and yet both visuals deceived by omission and design. Ethical visualization isn't just about numerical accuracy, it's about resisting the temptation to mislead through design even when that makes your argument weaker. It means including contradictory data, using design to clarify rather than manipulate, and being transparent about what's left out. Persuasion and ethics often exist in tension where the stronger your advocacy, the easier it becomes to distort truth. This project taught me to be skeptical of all data visualizations, especially those that reinforce my own assumptions. The tools that make visualizations persuasive are the same ones that make them dangerous, a "double-edged sword".</p>
+      </section>
+
+    </main>
+  </body>
+</html>
